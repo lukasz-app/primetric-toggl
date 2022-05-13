@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Main from "./screens/Main";
+import Callback from "./screens/Callback";
+const Stack = createNativeStackNavigator();
+
+const linking = {
+  config: {
+    screens: {
+      Main: "",
+      Callback: "callback",
+    },
+  },
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <NavigationContainer linking={linking}>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Main} />
+        <Stack.Screen name="Callback" component={Callback} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
